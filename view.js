@@ -1,10 +1,8 @@
 /*__________________Initialize Board__________________*/
 let gameBoard = new Board();
 
-let windowBoard = document.getElementById('board');
-
 /*____________________Event listener for plays_________________*/
-windowBoard.addEventListener('click', e => {
+document.getElementById('board').addEventListener('click', e => {
   let eventCol = e.path[0], eventRow = e.path[1];
   let col = +eventCol.classList[1], row = +eventRow.classList[1];
 
@@ -18,6 +16,7 @@ windowBoard.addEventListener('click', e => {
       resetWindow();
     }
   }
+  updateHeader();
 });
 
 /*__________________Reset DOM elements___________________*/
@@ -27,3 +26,7 @@ const resetWindow = () => {
     columns[i].textContent = "";
   }
 };
+
+const updateHeader = () => {
+  return document.getElementById('turn').textContent = `Current Play: ${gameBoard.piece}`;
+}

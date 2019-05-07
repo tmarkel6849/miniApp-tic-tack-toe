@@ -16,10 +16,17 @@ class Board {
     }
   }
 
+  restartGame() {
+    this.playCount = 0;
+    for ( let i = 0; i < 3; i++ ) {
+      this.board[i] = this.startBoard[i].slice();
+    }
+  }
+  /*__________________Game Evaluations____________________*/
   checkForTie = () => {
     this.togglePiece();
     this.count++;
-    if ( this.playCount === 9 ) {
+    if (this.playCount === 9) {
       this.restartGame();
       this.playCount = 0;
       return 'tie';
@@ -28,17 +35,10 @@ class Board {
 
   placeAndCheck(row, col, piece) {
     this.board[row][col] = piece;
-    if ( this.checkForWin(row, col, piece) ) {
+    if (this.checkForWin(row, col, piece)) {
       this.restartGame();
       this.playCount = 0;
       return 'winner';
-    }
-  }
-
-  restartGame() {
-    this.playCount = 0;
-    for ( let i = 0; i < 3; i++ ) {
-      this.board[i] = this.startBoard[i].slice();
     }
   }
 
