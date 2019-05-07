@@ -25,7 +25,7 @@ class Board {
   /*__________________Game Evaluations____________________*/
   checkForTie = () => {
     this.togglePiece();
-    this.count++;
+    this.playCount++;
     if (this.playCount === 9) {
       this.restartGame();
       this.playCount = 0;

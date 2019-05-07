@@ -8,6 +8,8 @@ document.getElementById('board').addEventListener('click', e => {
 
   if (eventCol.textContent === "") {
     eventCol.textContent = gameBoard.piece;
+    eventCol.setAttribute('noGo', 'true');
+
     if ( gameBoard.placeAndCheck(row, col, gameBoard.piece) === 'winner' ) {
       alert(`${gameBoard.piece}'S WIN!!!'`);
       resetWindow();
@@ -24,6 +26,7 @@ const resetWindow = () => {
   let columns = document.getElementsByClassName('col');
   for (let i = 0; i < columns.length; i++) {
     columns[i].textContent = "";
+    columns[i].removeAttribute('noGo');
   }
 };
 
