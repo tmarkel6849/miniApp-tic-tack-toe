@@ -9,8 +9,20 @@ class Board {
   togglePiece() {
     if (  this.piece === 'X' ) {
       this.piece = 'O';
-    } else {
+      return;
+    } else  {
       this.piece = 'X';
+      return;
+    }
+  }
+
+  checkForTie = () => {
+    this.togglePiece();
+    this.count++;
+    if ( this.playCount === 9 ) {
+      this.restartGame();
+      this.playCount = 0;
+      return 'tie';
     }
   }
 
@@ -20,11 +32,6 @@ class Board {
       this.restartGame();
       this.playCount = 0;
       return 'winner';
-    }
-    if ( ++this.playCount === 9 ) {
-      this.restartGame();
-      this.playCount = 0;
-      return 'tie';
     }
   }
 
@@ -47,9 +54,7 @@ class Board {
 
   checkCol(col, piece) {
     for ( let i = 0; i < 3; i++ ) {
-      if ( this.board[i][col] !== piece ) {
-        return;
-      }
+      if ( this.board[i][col] !== piece ) return;
     }
     return true;
   }
@@ -57,18 +62,14 @@ class Board {
   checkRightDiagonal(piece) {
     let col = 2
     for (let i = 0; i < 3; i++) {
-      if (this.board[i][col] !== piece) {
-        return;
-      }
+      if (this.board[i][col] !== piece) return;
       col--;
     }
     return true;
   }
   checkLeftDiagonal(piece) {
     for (let i = 0; i < 3; i++) {
-      if (this.board[i][i] !== piece) {
-        return;
-      }
+      if (this.board[i][i] !== piece) return;
     }
     return true;
   }
